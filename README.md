@@ -12,8 +12,7 @@ Berikut adalah struktur direktori proyek Drives:
 
 ```plaintext
 Drives/
-├── app.py                
-├── data.csv               
+├── app.py                               
 ├── static/
 │   ├── css/
 │   │   └── bootstrap.min.css
