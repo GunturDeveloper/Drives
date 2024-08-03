@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Drives</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .content-text {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="https://github.com/GunturDeveloper/">Drives By GunturDeveloper</a>
+    </nav>
+    <div class="container mt-5">
+        <h1>Tambah Data Baru</h1>
+        <form action="{{ url_for('add') }}" method="POST">
+            <div class="form-group">
+                <label for="title">Judul</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Sub Judul</label>
+                <input type="text" class="form-control" id="subtitle" name="subtitle" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Konten</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Masukkan Data</button>
+        </form>
+        <hr>
+        <h1>Data Yang Tersedia :</h1>
+        <div class="row">
+            {% for item in data_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ item.subtitle }}</h6>
+                            <p class="card-text content-text">{{ item.content }}</p>
+                            <p class="card-text"><small class="text-muted">Ditambahkan Pada {{ item.timestamp }}</small></p>
+                            <form action="{{ url_for('delete', index=loop.index0) }}" method="POST">
+                                <button type="submit" class="btn btn-danger">Hapus Data</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
